@@ -17,7 +17,22 @@ class ViewTest : AndroidTestCase() {
         example.addView(tv)
 
         assertNotNull(example.name)
+    }
 
+    fun testCachedView() {
+        class Example(context: Context) : LinearLayout(context) {
+            val name: TextView by bindView(1)
+        }
+
+        val example = Example(context)
+        val tv = TextView(context).apply { id = 1 }
+        example.addView(tv)
+
+        assertNotNull(example.name)
+
+        example.removeAllViews()
+
+        assertNotNull(example.name)
     }
 
 }

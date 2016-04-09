@@ -9,8 +9,17 @@ fun <V : View> View.bindView(resId: Int): ReadOnlyProperty<View, V> {
 }
 
 private class Lazy<V : View>(val resId: Int) : ReadOnlyProperty<View, V> {
+
+    private object EMPTY
+    private var value : Any = EMPTY
+
     override fun getValue(thisRef: View, property: KProperty<*>): V {
-        return thisRef.findViewById(resId) as V
+
+        if (value == EMPTY) {
+            value = thisRef.findViewById(resId)
+        }
+
+        return value as V
     }
 }
 
