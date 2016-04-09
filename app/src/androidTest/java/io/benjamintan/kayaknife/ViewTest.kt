@@ -4,7 +4,6 @@ import android.content.Context
 import android.test.AndroidTestCase
 import android.widget.LinearLayout
 import android.widget.TextView
-import kotlin.properties.ReadOnlyProperty
 
 class ViewTest : AndroidTestCase() {
 
